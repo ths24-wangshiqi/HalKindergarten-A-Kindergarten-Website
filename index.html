@@ -1,0 +1,848 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HAL幼稚園 | 毎日が笑顔であふれる幼稚園</title>
+    
+    <!-- 网站标签页图标 (Favicon) -->
+    <link rel="icon" type="image/png" href="./img/HAL-kindergarten_logo_V.png">
+    
+    <!-- 引入 Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- 引入 Google Fonts: Zen Maru Gothic (模拟日文圆润字体) -->
+    <link href="https://fonts.googleapis.com/css2?family=Zen+Maru+Gothic:wght@400;500;700;900&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['"Zen Maru Gothic"', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            green: '#8CB64E',
+                            lightGreen: '#F4F9EB',
+                            orange: '#FF9F43',
+                            text: '#333333',
+                            gray: '#666666',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* 改进的波浪分隔 */
+        .wave-divider {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            overflow: hidden;
+            line-height: 0;
+        }
+        .wave-divider svg {
+            display: block;
+            width: calc(100% + 1.3px);
+            height: 80px;
+        }
+        @media (min-width: 768px) {
+            .wave-divider svg {
+                height: 120px;
+            }
+        }
+
+        .text-shadow {
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        /* ===== 滚动渐入动画 ===== */
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+        .reveal.revealed {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="font-sans text-brand-text antialiased bg-white">
+
+    <!-- Header / Navigation -->
+    <header class="fixed w-full top-0 z-50 bg-white/90 backdrop-blur-sm shadow-sm transition-all duration-300">
+        <div class="container mx-auto px-4 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <div class="flex items-center gap-3">
+                <img src="C:\HAL\WB31-06_IW13A213-28_WANG SHIQI\img\HAL-kindergarten_logo_H.png" alt="HAL Logo" class="h-12 w-auto">
+                <div class="hidden md:block leading-tight">
+
+                    
+                </div>
+            </div>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-8 text-sm font-medium text-gray-600">
+                <a href="#" class="hover:text-brand-green transition">園について</a>
+                <a href="#" class="hover:text-brand-green transition">ハルの教育</a>
+                <a href="#" class="hover:text-brand-green transition">園での生活</a>
+                <a href="#" class="hover:text-brand-green transition">新園舎</a>
+                <a href="#" class="hover:text-brand-green transition">お知らせ</a>
+                <a href="#" class="hover:text-brand-green transition">アクセス</a>
+                <a href="#" class="bg-brand-orange text-white px-6 py-2 rounded-full hover:bg-opacity-90 transition shadow-md">資料請求</a>
+            </nav>
+
+            <!-- Mobile Menu Button -->
+            <button class="lg:hidden text-brand-green">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative h-[600px] lg:h-[700px] flex items-center justify-center overflow-hidden mt-20">
+        <!-- Background Image -->
+        <div class="absolute inset-0 z-0">
+            <img src="C:\HAL\WB31-06_IW13A213-28_WANG SHIQI\img\03.jpg" alt="Kids playing" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-black/20"></div> <!-- Overlay for readability -->
+        </div>
+
+        <!-- Content -->
+        <div class="relative z-10 container mx-auto px-4 text-white">
+            <span class="inline-block bg-white/20 backdrop-blur-md px-4 py-1 rounded-full text-sm mb-4 border border-white/30">お子様のすばらしい能力を花咲かせます</span>
+            <h2 class="text-4xl md:text-6xl font-bold mb-6 leading-tight text-shadow animate-char">
+            大切な幼児期の<br>
+            教育を<span class="gradient-text">ハル幼稚園</span><br>
+            にお任せください。
+            </h2>
+            <p class="text-lg md:text-xl max-w-2xl mb-8 leading-relaxed text-shadow">
+                一人ひとりの個性を輝かせる、バランスの取れた教育。<br>
+                のびのび保育から知能教育まで、3歳児から全員が体験できます。
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4">
+                <a href="#" class="btn-shine pulse-breath bg-brand-orange text-white px-8 py-3 rounded-full font-bold text-center hover:bg-opacity-90 transition shadow-lg">
+                資料請求はこちら
+                </a>
+                <a href="#" class="bg-white/20 backdrop-blur-md border border-white text-white px-8 py-3 rounded-full font-bold text-center hover:bg-white hover:text-brand-green transition">園について</a>
+            </div>
+        </div>
+
+
+
+        <!-- Wave Divider -->
+        <div class="wave-divider">
+            <svg viewBox="0 0 1440 120" preserveAspectRatio="none">
+                <!-- 左边高起 → 中间下凹 → 右边再抬起 → 底部填满白色 -->
+                <path d="M0,30 C360,0 720,120 1080,60 C1260,30 1380,90 1440,50 L1440,120 L0,120 Z" fill="white"></path>
+            </svg>
+        </div>
+    </section>
+
+
+
+<!-- 放在两个 section 之间 -->
+<div class="h-24 md:h-40"></div>
+
+
+
+
+    <!-- About Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="text-brand-green font-bold tracking-wider uppercase text-sm bg-brand-lightGreen px-4 py-1 rounded-full">About HAL</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4 text-brand-text">ハル幼稚園について</h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <div class="absolute -top-4 -left-4 w-24 h-24 bg-brand-orange/10 rounded-full z-0"></div>
+                    <img src="C:\HAL\WB31-06_IW13A213-28_WANG SHIQI\img\20.jpg" alt="Teacher and kids" class="rounded-3xl shadow-xl relative z-10 w-full object-cover h-[400px]">
+                </div>
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6 leading-snug">
+                        お子様のすばらしい能力を<br>
+                        <span class="text-brand-green">花咲かせます</span>
+                    </h3>
+                    <p class="text-brand-gray mb-6 leading-loose">
+                        大切なお子様お一人おひとりの個性を輝かせるよう、教職員一同、一生懸命がんばっています。ぜひ、大切な幼児期の教育をハル幼稚園にお任せください。
+                    </p>
+                    <p class="text-brand-gray mb-8 leading-loose">
+                        どろんこ遊びやお絵かきなどののびのび保育から、英語・体操・プール・音楽やパソコン・知能教育まで、3歳児から全員の方に保育料の中ですべて体験していただき、社会性を身につけ、心を育てるバランスの取れた教育を行います。
+                    </p>
+                    
+                    <!-- Tags -->
+                    <div class="flex flex-wrap gap-2 mb-8">
+                        <span class="px-4 py-1 bg-brand-lightGreen text-brand-green rounded-full text-sm font-bold">のびのび保育</span>
+                        <span class="px-4 py-1 bg-brand-lightGreen text-brand-green rounded-full text-sm font-bold">英語</span>
+                        <span class="px-4 py-1 bg-brand-lightGreen text-brand-green rounded-full text-sm font-bold">体操</span>
+                        <span class="px-4 py-1 bg-brand-lightGreen text-brand-green rounded-full text-sm font-bold">プール</span>
+                        <span class="px-4 py-1 bg-brand-lightGreen text-brand-green rounded-full text-sm font-bold">音楽</span>
+                        <span class="px-4 py-1 bg-brand-lightGreen text-brand-green rounded-full text-sm font-bold">パソコン</span>
+                        <span class="px-4 py-1 bg-brand-lightGreen text-brand-green rounded-full text-sm font-bold">知能教育</span>
+                    </div>
+
+                    <div class="border-l-4 border-brand-orange pl-4 py-2 bg-gray-50">
+                        <p class="text-sm text-brand-gray">
+                            <span class="font-bold text-brand-orange">早期教育は必要です。</span>無意味な詰め込み教育がいけないだけなのです。運動能力の向上が脳の発達に大きな影響を与えます。楽しく運動遊びをしながら、幼児期の知能教育を受けさせてあげてください。
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+<!-- 放在两个 section 之间 -->
+<div class="h-24 md:h-40"></div>
+
+
+
+    <!-- Education Section (Green Background) -->
+    <section class="py-20 bg-brand-green text-white relative overflow-hidden">
+        <!-- Decorative Circle -->
+        <div class="absolute top-0 right-0 w-96 h-96 bg-white/5 rounded-full -mr-20 -mt-20"></div>
+
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-16">
+                <span class="bg-white/20 px-4 py-1 rounded-full text-sm font-bold">HAL Education</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4">ハル幼稚園といえば『SIあそび』</h2>
+                <p class="mt-4 opacity-90">お子様一人ひとりが、自ら考え、気づき、創意工夫する力を養う知能教育</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center mb-20">
+                <div class="order-2 md:order-1">
+                     <img src="C:\HAL\WB31-06_IW13A213-28_WANG SHIQI\img\24.jpg" alt="SI Play" class="rounded-3xl shadow-2xl w-full object-cover h-[350px]">
+                </div>
+                <div class="order-1 md:order-2">
+                    <h3 class="text-2xl font-bold mb-4">絶対に叱らない指導方法</h3>
+                    <p class="mb-6 opacity-90 leading-relaxed">
+                        SIあそびの時間には絶対叱らないという指導方法をとっています。一人ひとりの考え方を重視し、認めて、ほめます。正しい答えに導くための細かな言葉かけやヒントの出し方を常に研究して実践しています。
+                    </p>
+                    <div class="bg-white/10 p-6 rounded-xl mb-6 border border-white/20">
+                        <p class="font-bold text-brand-orange mb-2">勉強 → ほめられる → 勉強大好き！</p>
+                        <p class="text-sm opacity-90">この回路が生まれて、将来にわたっても勉強すること、努力することが好きな人になることができます。</p>
+                    </div>
+                    <h4 class="font-bold mb-2 text-brand-orange">※SIあそびとは</h4>
+                    <p class="text-sm opacity-80 leading-relaxed">
+                        南カリフォルニア大学名誉教授、J・Pギルフォード博士の知能構造（SI）論に基づく、遊びながら知能を高める英才教育で、数や言葉、記憶力、判断力、情緒、あらゆる能力を飛躍的に高めます。
+                    </p>
+                </div>
+            </div>
+
+            <!-- Special Courses Grid -->
+            <div class="text-center mb-10">
+                <h3 class="text-2xl font-bold text-brand-text reveal">3才から特別講師による指導！</h3>
+                <p class="text-sm text-brand-gray mt-2 reveal">普通保育の中で行いますので、保育料は別途徴収はいたしません</p>
+            </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 lg:w-[1024px] w-full mx-auto">
+        
+        <!-- カード1: 絵画造形教育 -->
+        <div class="bg-white rounded-2xl p-5 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center reveal border border-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFB800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10"></circle>
+                <path d="M12 6v12"></path>
+                <path d="M9 9l6 6"></path>
+                <path d="M15 9l-6 6"></path>
+            </svg>
+            <h4 class="mt-4 font-bold text-sm text-brand-text">絵画造形教育</h4>
+        </div>
+
+        <!-- カード2: 英語教育 -->
+        <div class="bg-white rounded-2xl p-5 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center reveal border border-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFB800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 7V4h3"></path>
+                <path d="M4 17v3h3"></path>
+                <path d="M20 7V4h-3"></path>
+                <path d="M20 17v3h-3"></path>
+                <rect x="9" y="9" width="6" height="6" rx="1"></rect>
+                <path d="M12 9v6"></path>
+            </svg>
+            <h4 class="mt-4 font-bold text-sm text-brand-text">英語教育</h4>
+        </div>
+
+        <!-- カード3: プール指導 -->
+        <div class="bg-white rounded-2xl p-5 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center reveal border border-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFB800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 12h20"></path>
+                <path d="M2 16h20"></path>
+                <path d="M2 8h20"></path>
+            </svg>
+            <h4 class="mt-4 font-bold text-sm text-brand-text">プール指導</h4>
+        </div>
+
+        <!-- カード4: 体操 -->
+        <div class="bg-white rounded-2xl p-5 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center reveal border border-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFB800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 12h-4l-3 9L9 3l-3 9H2"></path>
+            </svg>
+            <h4 class="mt-4 font-bold text-sm text-brand-text">体操</h4>
+        </div>
+
+        <!-- カード5: 声楽指導 -->
+        <div class="bg-white rounded-2xl p-5 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center reveal border border-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFB800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 18V5l12-2v13"></path>
+                <circle cx="6" cy="18" r="3"></circle>
+                <circle cx="18" cy="16" r="3"></circle>
+            </svg>
+            <h4 class="mt-4 font-bold text-sm text-brand-text">声楽指導</h4>
+        </div>
+
+        <!-- カード6: パソコン -->
+        <div class="bg-white rounded-2xl p-5 shadow-md hover:shadow-lg transition-shadow duration-300 flex flex-col items-center justify-center reveal border border-gray-100">
+            <svg xmlns="http://www.w3.org/2000/svg" width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#FFB800" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
+                <line x1="8" y1="21" x2="16" y2="21"></line>
+                <line x1="12" y1="17" x2="12" y2="21"></line>
+            </svg>
+            <h4 class="mt-4 font-bold text-sm text-brand-text">パソコン</h4>
+        </div>
+
+    </div>
+
+            <p class="text-center text-xs text-brand-gray mt-6 reveal">※中国語・パソコン使ってのローマ字指導は年長5才のみ</p>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+<div class="h-24 md:h-40"></div>
+
+
+
+
+
+
+    <!-- New Building Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="bg-yellow-100 text-yellow-700 px-4 py-1 rounded-full text-sm font-bold flex items-center justify-center gap-2 w-fit mx-auto">✨ New Building</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4 text-brand-text">
+                    子どもたちにも大人気☆<br>
+                    <span class="text-brand-orange">待望の新園舎</span>が完成しました！
+                </h2>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-12 items-center">
+                <div class="relative">
+                    <img src="C:\HAL\WB31-06_IW13A213-28_WANG SHIQI\img\about.jpg" alt="New Classroom" class="rounded-3xl shadow-xl w-full object-cover h-[400px]">
+                    <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-brand-green/10 rounded-full z-0"></div>
+                </div>
+                <div>
+                    <h3 class="text-2xl md:text-3xl font-bold mb-6">新園舎は広くてすてき！！</h3>
+                    <p class="text-brand-gray mb-6 leading-loose">
+                        子供達も毎日、きれいな設備で快適に過ごしています。中庭からの明るい陽射し、子供達はちょっとした時間にも、中庭の遊具で上靴のまま遊べるので楽しそうです。
+                    </p>
+                    <p class="text-brand-gray mb-8 leading-loose">
+                        参観や音楽会、おゆうぎ会、展覧会など、幼稚園での行事は人数制限一切なしで行えるようになりました。
+                    </p>
+
+                    <!-- Features List -->
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="flex items-center gap-3 p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal border border-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8CB64E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5"></circle>
+                                <line x1="12" y1="1" x2="12" y2="3"></line>
+                                <line x1="12" y1="21" x2="12" y2="23"></line>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                                <line x1="1" y1="12" x2="3" y2="12"></line>
+                                <line x1="21" y1="12" x2="23" y2="12"></line>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                            </svg>
+                            <span class="font-bold text-sm text-brand-text">明るい中庭</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal border border-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8CB64E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                                <path d="M3 9h18"></path>
+                                <path d="M9 21V9"></path>
+                            </svg>
+                            <span class="font-bold text-sm text-brand-text">広い設備</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal border border-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8CB64E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="9" cy="7" r="4"></circle>
+                                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                            </svg>
+                            <span class="font-bold text-sm text-brand-text">行事の人数制限なし</span>
+                        </div>
+
+                        <div class="flex items-center gap-3 p-5 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow duration-300 reveal border border-gray-100">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#8CB64E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M2 12h2"></path>
+                                <path d="M20 12h2"></path>
+                                <path d="M12 2v2"></path>
+                                <path d="M12 20v2"></path>
+                                <path d="M4 4l1.5 1.5"></path>
+                                <path d="M18.5 18.5L20 20"></path>
+                                <path d="M4 20l1.5-1.5"></path>
+                                <path d="M18.5 5.5L20 4"></path>
+                            </svg>
+                            <span class="font-bold text-sm text-brand-text">上靴のまま遊べる</span>
+                        </div>
+                    </div>
+
+                    <p class="mt-6 text-brand-green font-bold reveal">
+                        子供達の生き生きと楽しんでいる様子をたくさんの方にご覧いただきたいと思います！！
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+<div class="h-24 md:h-40"></div>
+
+
+
+
+
+    <!-- Kindergarten Life (Cards) -->
+    <section class="py-20 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="bg-brand-lightGreen text-brand-green px-4 py-1 rounded-full text-sm font-bold">Kindergarten Life</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4 text-brand-text">幼稚園での生活</h2>
+                <p class="text-brand-gray mt-4">のびのび保育から知能教育まで、すべてにバランスの取れた教育を実施</p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="C:\HAL\WB31-06_IW13A213-28_WANG SHIQI\img\18.jpg" alt="Playground" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2">どろんこ遊び・自然体験</h4>
+                        <p class="text-sm text-brand-gray leading-relaxed">自然とふれあいながら、五感を使ってのびのび遊びます。いも掘りなど豊かな体験が子どもたちの心を育てます。</p>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="C:\HAL\WB31-06_IW13A213-28_WANG SHIQI\img\06.jpg" alt="Art" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2">お絵かき・造形教育</h4>
+                        <p class="text-sm text-brand-gray leading-relaxed">自由な発想で表現する楽しさを知ります。特別講師による絵画造形教育で豊かな感性を育てます。</p>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="C:\HAL\WB31-06_IW13A213-28_WANG SHIQI\img\21.jpg" alt="English" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2">英語・知能教育</h4>
+                        <p class="text-sm text-brand-gray leading-relaxed">特別講師による指導で、自然に英語に親しみます。3歳児から保育料の中で全員が体験できます。</p>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="bg-white rounded-2xl shadow-sm hover:shadow-xl transition duration-300 overflow-hidden group">
+                    <div class="h-48 overflow-hidden">
+                        <img src="C:\HAL\WB31-06_IW13A213-28_WANG SHIQI\img\10.jpg" alt="Swimming" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                    </div>
+                    <div class="p-6">
+                        <h4 class="font-bold text-lg mb-2">プール・体操</h4>
+                        <p class="text-sm text-brand-gray leading-relaxed">運動能力の向上が脳の発達に大きな影響を与えます。楽しく運動遊びをしながら健やかな体を育てます。</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Extra Clubs -->
+            <div class="mt-16 bg-white p-8 rounded-2xl shadow-sm border border-gray-100">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="bg-brand-orange/10 p-4 rounded-xl text-brand-orange">
+                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z"></path></svg>
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-xl font-bold mb-4">課外クラブ・特設保育</h4>
+                        <p class="text-brand-gray mb-4 leading-relaxed">
+                            ご希望の方には、課外保育や特設保育の中で、お茶・お花・剣道・鼓笛隊・ソロバン等いろいろな活動を選んでいただけます。品格ある態度の育成を目指し、自分の個性に自信を持ち、思いやりの心で人に接することのできる子を育てます。
+                        </p>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="px-3 py-1 bg-brand-lightGreen text-brand-green rounded-full text-xs font-bold">お茶</span>
+                            <span class="px-3 py-1 bg-brand-lightGreen text-brand-green rounded-full text-xs font-bold">お花</span>
+                            <span class="px-3 py-1 bg-brand-lightGreen text-brand-green rounded-full text-xs font-bold">剣道</span>
+                            <span class="px-3 py-1 bg-brand-lightGreen text-brand-green rounded-full text-xs font-bold">鼓笛隊</span>
+                            <span class="px-3 py-1 bg-brand-lightGreen text-brand-green rounded-full text-xs font-bold">ソロバン</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+<div class="h-24 md:h-40"></div>
+
+
+
+
+
+
+    <!-- Childcare & Bus -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="bg-brand-lightGreen text-brand-green px-4 py-1 rounded-full text-sm font-bold">Childcare & Bus</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4 text-brand-text">あずかり保育・送迎バス</h2>
+                <p class="text-brand-gray mt-4">様々なニーズにお応えする、安心のサポート体制</p>
+            </div>
+
+            <!-- 3 Cards -->
+            <div class="grid md:grid-cols-3 gap-8 mb-16">
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:border-brand-green transition">
+                    <div class="w-12 h-12 bg-brand-orange/10 rounded-lg flex items-center justify-center text-brand-orange mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">あずかり保育</h4>
+                    <p class="text-sm text-brand-gray">保育時間終了後も安心してお預けいただけます。仕事やご家庭の事情に合わせてご利用ください。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:border-brand-green transition">
+                    <div class="w-12 h-12 bg-brand-orange/10 rounded-lg flex items-center justify-center text-brand-orange mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">時間外保育</h4>
+                    <p class="text-sm text-brand-gray">決まった時間帯でご利用いただける保育です。ご家庭の都合に合わせて柔軟に対応します。</p>
+                </div>
+                <div class="bg-white p-6 rounded-xl shadow-lg border border-gray-100 hover:border-brand-green transition">
+                    <div class="w-12 h-12 bg-brand-orange/10 rounded-lg flex items-center justify-center text-brand-orange mb-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <h4 class="font-bold text-lg mb-2">スポット保育</h4>
+                    <p class="text-sm text-brand-gray">必要な時だけご利用いただける保育です。急なご用事の際も安心です。</p>
+                </div>
+            </div>
+
+            <!-- Bus Info Box -->
+            <div class="bg-brand-lightGreen rounded-3xl p-8 md:p-12 flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <img src="C:\HAL\WB31-06_IW13A213-28_WANG SHIQI\img\17.jpg" alt="Bus" class="rounded-2xl shadow-md w-full object-cover h-[300px]">
+                </div>
+                <div class="md:w-1/2">
+                    <h3 class="text-2xl font-bold mb-4">送迎バスのご案内</h3>
+                    <p class="text-brand-gray mb-6">
+                        送迎バスは<span class="font-bold text-brand-green">18＋6コース</span>、停留所は<span class="font-bold text-brand-green">220箇所</span>。「自宅のすぐ側まで」を基本に、毎年見直ししています。
+                    </p>
+                    <div class="flex gap-4 mb-8">
+                        <div class="bg-white p-4 rounded-xl shadow-sm text-center flex-1">
+                            <span class="block text-3xl font-bold text-brand-green">24</span>
+                            <span class="text-xs text-brand-gray">バスコース</span>
+                        </div>
+                        <div class="bg-white p-4 rounded-xl shadow-sm text-center flex-1">
+                            <span class="block text-3xl font-bold text-brand-orange">220</span>
+                            <span class="text-xs text-brand-gray">停留所</span>
+                        </div>
+                    </div>
+                    <a href="#" class="inline-block bg-brand-green text-white px-6 py-3 rounded-full font-bold hover:bg-opacity-90 transition">送迎バスの詳細を見る</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+<div class="h-24 md:h-40"></div>
+
+
+
+
+
+
+
+
+    <!-- News & Topics -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <span class="bg-yellow-100 text-yellow-700 px-4 py-1 rounded-full text-sm font-bold">TOPICS</span>
+                <h2 class="text-3xl md:text-4xl font-bold mt-4 text-brand-text">お知らせ・更新情報</h2>
+            </div>
+
+            <div class="grid lg:grid-cols-3 gap-12">
+                <!-- News List -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Item 1 -->
+                    <a href="#" class="flex flex-col sm:flex-row gap-4 items-start sm:items-center p-4 hover:bg-gray-50 rounded-xl transition border-b border-gray-100">
+                        <span class="text-gray-400 text-sm whitespace-nowrap">2026.07.01</span>
+                        <span class="bg-brand-orange text-white text-xs px-3 py-1 rounded-full font-bold">入園案内</span>
+                        <span class="font-medium text-brand-text flex-1 hover:text-brand-green">入園説明会〜新宿文化センター〜</span>
+                        <span class="text-gray-300">></span>
+                    </a>
+                    <!-- Item 2 -->
+                    <a href="#" class="flex flex-col sm:flex-row gap-4 items-start sm:items-center p-4 hover:bg-gray-50 rounded-xl transition border-b border-gray-100">
+                        <span class="text-gray-400 text-sm whitespace-nowrap">2026.06.21</span>
+                        <span class="bg-brand-green text-white text-xs px-3 py-1 rounded-full font-bold">イベント</span>
+                        <span class="font-medium text-brand-text flex-1 hover:text-brand-green">親子の絵画教室　参加者募集</span>
+                        <span class="text-gray-300">></span>
+                    </a>
+                    <!-- Item 3 -->
+                    <a href="#" class="flex flex-col sm:flex-row gap-4 items-start sm:items-center p-4 hover:bg-gray-50 rounded-xl transition border-b border-gray-100">
+                        <span class="text-gray-400 text-sm whitespace-nowrap">2026.05.17</span>
+                        <span class="bg-brand-green text-white text-xs px-3 py-1 rounded-full font-bold">イベント</span>
+                        <span class="font-medium text-brand-text flex-1 hover:text-brand-green">親子の絵画教室　参加者募集</span>
+                        <span class="text-gray-300">></span>
+                    </a>
+                    <!-- Item 4 -->
+                    <a href="#" class="flex flex-col sm:flex-row gap-4 items-start sm:items-center p-4 hover:bg-gray-50 rounded-xl transition border-b border-gray-100">
+                        <span class="text-gray-400 text-sm whitespace-nowrap">2026.04.22</span>
+                        <span class="bg-blue-300 text-white text-xs px-3 py-1 rounded-full font-bold">お知らせ</span>
+                        <span class="font-medium text-brand-text flex-1 hover:text-brand-green">幼年消防クラブ　発会式</span>
+                        <span class="text-gray-300">></span>
+                    </a>
+                </div>
+
+                <!-- Sidebar Links -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-gray-100 h-fit reveal">
+                <h4 class="font-bold text-lg mb-6 border-b border-gray-100 pb-4 text-brand-text">コンテンツ</h4>
+                <ul class="space-y-4">
+                    <li>
+                        <a href="#" class="flex items-center gap-3 text-brand-gray hover:text-brand-green transition-colors duration-200 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8CB64E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg>
+                            <span>園からのお知らせ</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-3 text-brand-gray hover:text-brand-green transition-colors duration-200 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8CB64E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg>
+                            <span>新園舎ニュース</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-3 text-brand-gray hover:text-brand-green transition-colors duration-200 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8CB64E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg>
+                            <span>今日の幼稚園</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-3 text-brand-gray hover:text-brand-green transition-colors duration-200 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8CB64E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg>
+                            <span>幼稚園での生活</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-3 text-brand-gray hover:text-brand-green transition-colors duration-200 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8CB64E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg>
+                            <span>展覧会・コンクール作品</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-3 text-brand-gray hover:text-brand-green transition-colors duration-200 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8CB64E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg>
+                            <span>ハルの教育</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="flex items-center gap-3 text-brand-gray hover:text-brand-green transition-colors duration-200 group">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8CB64E" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="4"></circle>
+                            </svg>
+                <span>ハル幼稚園について</span>
+            </a>
+        </li>
+    </ul>
+</div>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Bottom Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mt-12">
+                <a href="#" class="px-6 py-2 border border-gray-300 rounded-full text-brand-gray hover:border-brand-green hover:text-brand-green transition">入園のご案内</a>
+                <a href="#" class="px-6 py-2 border border-gray-300 rounded-full text-brand-gray hover:border-brand-green hover:text-brand-green transition">求人情報</a>
+                <a href="#" class="px-6 py-2 border border-gray-300 rounded-full text-brand-gray hover:border-brand-green hover:text-brand-green transition">資料請求</a>
+                <a href="#" class="px-6 py-2 border border-gray-300 rounded-full text-brand-gray hover:border-brand-green hover:text-brand-green transition">２才英才教育のご案内</a>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+
+
+
+    <!-- 放在两个 section 之间 -->
+    <div class="h-12 md:h-20"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <!-- Access / Map -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <!-- Map Placeholder -->
+                <div class="w-full h-[400px] bg-gray-200 rounded-3xl overflow-hidden relative">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3241.747975641234!2d139.7000!3d35.6900!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzXCsDQxJzI0LjAiTiAxMznCsDQyJzAwLjAiRQ!5e0!3m2!1sen!2sjp!4v1620000000000!5m2!1sen!2sjp" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h2 class="text-3xl md:text-4xl font-bold mt-4 text-brand-text">お問合せ・アクセス</h2>
+                    <h3 class="text-xl font-bold mb-8">ハル幼稚園</h3>
+                    <div class="space-y-6">
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 bg-brand-lightGreen rounded-full flex items-center justify-center text-brand-green shrink-0"></div>
+                            <div>
+                                <p class="text-sm text-brand-gray mb-1">住所</p>
+                                <p class="font-medium">〒160-0023<br>東京都新宿区西新宿1-7-3</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 bg-brand-orange/10 rounded-full flex items-center justify-center text-brand-orange shrink-0"></div>
+                            <div>
+                                <p class="text-sm text-brand-gray mb-1">電話番号</p>
+                                <p class="font-medium text-lg">03-3344-1010</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4">
+                            <div class="w-10 h-10 bg-blue-50 rounded-full flex items-center justify-center text-blue-400 shrink-0"></div>
+                            <div>
+                                <p class="text-sm text-brand-gray mb-1">見学・ご案内</p>
+                                <p class="font-medium text-sm text-brand-gray">知能教育など見学ご希望の方も随時受け付けております。<br>前日までにお電話でお申し出ください。</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 flex gap-4">
+                        <a href="tel:0333441010" class="flex-1 bg-brand-orange text-white py-3 rounded-xl font-bold text-center hover:bg-opacity-90 transition flex items-center justify-center gap-2">
+                            <span></span> お電話
+                        </a>
+                        <a href="#" class="flex-1 bg-brand-green text-white py-3 rounded-xl font-bold text-center hover:bg-opacity-90 transition flex items-center justify-center gap-2">
+                            <span></span> 資料請求
+                        </a>
+                    </div>
+                    <p class="text-center text-xs text-brand-gray mt-6">
+                        パンフレットご希望の方は郵送させていただきます。<br>お電話にてご請求ください。
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-brand-green text-white pt-20 pb-10">
+        <div class="container mx-auto px-4">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
+                <!-- Brand -->
+                <div class="col-span-1 md:col-span-1">
+                    <div class="flex items-center gap-2 mb-4">
+                         <img src="C:\HAL\WB31-06_IW13A213-28_WANG SHIQI\img\HAL-kindergarten_logo_H.png" alt="Logo" class="h-10 w-auto opacity-80">
+                         
+                    </div>
+                    <p class="text-sm opacity-80 leading-relaxed">
+                        お子様のすばらしい能力を花咲かせます。一人ひとりの個性を輝かせる、バランスの取れた教育。
+                    </p>
+                </div>
+
+                <!-- Links 1 -->
+                <div>
+                    <h4 class="font-bold mb-4 text-sm opacity-90">メインコンテンツ</h4>
+                    <ul class="space-y-2 text-sm opacity-70">
+                        <li><a href="#" class="hover:text-white hover:opacity-100">ハル幼稚園について</a></li>
+                        <li><a href="#" class="hover:text-white hover:opacity-100">ハルの教育</a></li>
+                        <li><a href="#" class="hover:text-white hover:opacity-100">幼稚園での生活</a></li>
+                        <li><a href="#" class="hover:text-white hover:opacity-100">新園舎ニュース</a></li>
+                        <li><a href="#" class="hover:text-white hover:opacity-100">お知らせ</a></li>
+                        <li><a href="#" class="hover:text-white hover:opacity-100">アクセス</a></li>
+                    </ul>
+                </div>
+
+                <!-- Links 2 -->
+                <div>
+                    <h4 class="font-bold mb-4 text-sm opacity-90">サブコンテンツ</h4>
+                    <ul class="space-y-2 text-sm opacity-70">
+                        <li><a href="#" class="hover:text-white hover:opacity-100">入園のご案内</a></li>
+                        <li><a href="#" class="hover:text-white hover:opacity-100">資料請求</a></li>
+                        <li><a href="#" class="hover:text-white hover:opacity-100">求人情報</a></li>
+                        <li><a href="#" class="hover:text-white hover:opacity-100">２才英才教育</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact -->
+                <div>
+                    <h4 class="font-bold mb-4 text-sm opacity-90">お問い合わせ</h4>
+                    <p class="text-sm opacity-70 mb-2">〒160-0023<br>東京都新宿区西新宿1-7-3</p>
+                    <p class="text-sm opacity-70 mb-4">TEL: <span class="font-bold text-white">03-3344-1010</span></p>
+                    <p class="text-xs opacity-60 mb-4">見学・ご相談 随時受付中</p>
+                    <a href="tel:0333441010" class="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full text-sm font-bold hover:bg-white/30 transition">
+                        今すぐお電話する
+                    </a>
+                </div>
+            </div>
+
+            <div class="border-t border-white/20 pt-8 text-center text-xs opacity-50">
+                <p>&copy; 2026 ハル幼稚園 All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, { threshold: 0.2 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+
+</html>
